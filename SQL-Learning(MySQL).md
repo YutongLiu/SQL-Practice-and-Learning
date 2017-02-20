@@ -28,7 +28,7 @@
 
 **Solution 2**: using self-join  
 
-    		SELECT c1.cust_id, c1.cust_name, c1.cust_contact
+		SELECT c1.cust_id, c1.cust_name, c1.cust_contact
 		FROM customers c1, customers c2
 		WHERE c1.cust_name = c2.cust_name and c1.cust_contact != c2.cust_contact;
 
@@ -70,11 +70,11 @@ These two queries are availale just in **MySQL**! It's TOP in SQL server/Assess.
 	
 I found in MySQL it's case insensitive! So WHERE vend_id <> 'brs01' = WHERE vend_id <> 'BRS01'.  
 But, what if there are BRS01 and brs01 at the same time and I want to only exclude brs01 and keep BRS01?  
-Here is one of the solutions!~ Thanks for the Internet and search engine:)  
+Here is one of the solutions!~ Using **BINARY** Thanks for the Internet and search engine:)  
 
 		SELECT prod_name, vend_id
 		FROM products
-		WHERE **BINARY** vend_id <> 'brs01'; 
+		WHERE BINARY vend_id <> 'brs01'; 
 	
 9 IS NULL and IS NOT NULL  
 
@@ -87,7 +87,7 @@ Here is one of the solutions!~ Thanks for the Internet and search engine:)
 
 		SELECT *
 		FROM orders
-		WHERE day(order_date) BETWEEN 1 AND 5;` -- from Monday to Friday
+		WHERE day(order_date) BETWEEN 1 AND 5; -- from Monday to Friday
 
 11 Return the orders which were created on workday  
 
