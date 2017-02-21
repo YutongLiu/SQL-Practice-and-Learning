@@ -138,3 +138,32 @@ Here is one of the solutions!~ Using **BINARY** Thanks for the Internet and sear
 		SELECT *
 		FROM products
 		WHERE NOT (vend_id = 'DLL01' AND prod_price > 4);
+### Wildcard (always use with LIKE/REGEXP)
+Please find more detail [here]('https://dev.mysql.com/doc/refman/5.6/en/regexp.html#operator_regexp') Documentation is useful!  
+**%**: any number of any character, it can also match space
+17 Find all bear toy
+
+		SELECT prod_id, prod_name
+		FROM products
+		WHERE prod_name LIKE '%bear%';  
+		
+**\_**: only one character (use more \_ if you want to find a specified number of characters, e.g. \_\_\_ means 3 characters)  
+N.B. It's **?** in Access :)  
+18 Find all xxxx bean bag toy  
+
+		SELECT prod_id, prod_name
+		FROM products
+		WHERE prod_name LIKE '____ bean bag toy'  
+		
+19 Find all names containing exactly 8 characters  
+
+		SELECT cust_contact
+		FROM customers
+		WHERE cust_contact LIKE '_________';
+
+**REGEXP**: it's similar to regular expression in R :)  
+20 Find toy that the name begins with B or F  
+
+		SELECT prod_id, prod_name
+		FROM products
+		WHERE prod_name REGEXP '^(B|F)'; -- Do not need to use % 
