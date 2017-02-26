@@ -7,7 +7,8 @@ N.B.
 
 1. The queries I used are just for **MySQL**, maybe they won't work in other DBMS like SQL server, Access, PostgreSQL...
 2. The dataset I use is from [here]('forta.com/books/0672336073/')
-3. I made a relational schema of the dataset I used and put it here. I think it's really helpful for understanding the dataset structure.
+3. I made a relational schema of the dataset I used and put it here. I think it's really helpful when understanding the dataset structure. 
+P.S. There is a free online tool, [ERDPlus](https://erdplus.com/#/), for creating ER or relational schema. Highly recommended! :D
 
-![Relational_Schema]("E:\Data_analysis_learning\SQL\MySQL\SQL_in_10_minutes_practice\erdplus-diagram-withbackground.png")
+![Relational_Schema](https://github.com/YutongLiu/SQL-Practice-and-Learning/blob/master/erdplus-diagram-withbackground.png)
      
