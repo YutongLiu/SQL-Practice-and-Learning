@@ -10,5 +10,5 @@ N.B.
 3. I made a relational schema of the dataset I used and put it here. I think it's really helpful when understanding the dataset structure. 
 P.S. There is a free online tool, [ERDPlus](https://erdplus.com/#/), for creating ER or relational schema. Highly recommended! :D
 
-![Relational_Schema](https://github.com/YutongLiu/SQL-Practice-and-Learning/blob/master/erdplus-diagram-withbackground.png)
+![Relational_Schema](https://github.com/YutongLiu/SQL-Practice-and-Learning/blob/master/Images/erdplus-diagram-withbackground.png)
      
