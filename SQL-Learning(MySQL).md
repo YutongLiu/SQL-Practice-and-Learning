@@ -15,7 +15,8 @@
 		HAVING contact_number >1;
 
 ###  Self-join and sub-query  
-  I think in some situations these two approaches have the same results.
+  I think in some situations these two approaches have the same results.  
+  
 3. Find the customers that have more than one contact and list the contact name  
 **Solution 1**: using sub-query
 
@@ -34,6 +35,7 @@
 
 ### LIMIT, OFFSET  
 These two queries are availale just in **MySQL**! It's TOP in SQL server/Assess.  
+
 4. The quer below means **return 1 row from the "first" row**  
 
 		SELECT prod_name
