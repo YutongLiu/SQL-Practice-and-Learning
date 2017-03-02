@@ -320,7 +320,7 @@ We can nest more than one sub-query, but this can affect the execution duration.
 * 35 Who ordered "BNBG01"? return the customer name?
 
 **Solution 1**: sub-query
-Use a DISTINCT will be more rigorous
+Use a DISTINCT will be more rigorous.
 
 		SELECT DISTINCT cust_name
 		FROM customers
@@ -340,11 +340,18 @@ In this case, actually the sub-query returns the outcome from different tables, 
 			o.cust_id = c.cust_id
 		WHERE oi.prod_id = "BNBG01";
 
+* 36 Find the second highest item price in orderitems.
+
+		SELECT max(item_price)
+		FROM orderitems
+		WHERE item_price < (SELECT max(item_price)
+					FROM orderitems);
+
 #### 2. Calculation & Aggregation (when use > 1 tables)
-* 36 Sum of order of each customer?
+* 37 Sum of order of each customer?
 
 **Solution 1**: sub-query
-We don't use distinct in count this time, because order_num is the primary key in orders
+We don't use distinct in count this time, because order_num is the *primary key* in orders.
 
 		SELECT c.cust_id, 
 			(SELECT COUNT(*)
@@ -353,7 +360,7 @@ We don't use distinct in count this time, because order_num is the primary key i
 		FROM customers c;
 
 **Solution 2**: Left-join
-We use left join not just group by in the orders table, because there are customers that don't have any order
+We use left join not just group by in the orders table, because there are customers that don't have any order.
 
 		SELECT c.cust_id, COUNT(o.order_num) sum_order
 		FROM customers c LEFT JOIN orders o
