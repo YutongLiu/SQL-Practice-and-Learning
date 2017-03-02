@@ -1,12 +1,12 @@
 ###  Group by
-* 1. Number of contacts in each customer  
+* 1 Number of contacts in each customer  
 
 		SELECT c1.cust_id, c1.cust_name, count(c1.cust_contact)
 		FROM customers c1    
 		GROUP BY c1.cust_name;
  
 
-* 2. Find the customers that have more than one contact  
+* 2 Find the customers that have more than one contact  
 (! Order of queries: SELECT-FROM-(WHERE)-GROUP BY-HAVING)
 
 		SELECT c1.cust_id, c1.cust_name, count(c1.cust_contact) contact_number
@@ -17,7 +17,7 @@
 ###  Self-join and sub-query  
   I think in some situations these two approaches have the same results.  
   
-* 3. Find the customers that have more than one contact and list the contact name  
+* 3 Find the customers that have more than one contact and list the contact name  
 **Solution 1**: using sub-query
 
     		SELECT c1.cust_id, c1.cust_name, c1.cust_contact  
@@ -36,20 +36,20 @@
 ### LIMIT, OFFSET  
 These two queries are availale just in **MySQL**! It's TOP in SQL server/Assess.  
 
-* 4. The quer below means **return 1 row from the "first" row**  
+* 4 The quer below means **return 1 row from the "first" row**  
 
 		SELECT prod_name
 		FROM products
 		LIMIT 1 OFFSET 0;
 
-* 5. The quer below means **return 1 row from the second row**  
+* 5 The quer below means **return 1 row from the second row**  
 
 		SELECT prod_name
 		FROM products
 		LIMIT 1 OFFSET 1;
 
 ### ORDER BY
-* 6. Return all culumns and rank the order and item price in descending order.  
+* 6 Return all culumns and rank the order and item price in descending order.  
 (! the position of DESC)  
 
 		SELECT *
@@ -57,14 +57,14 @@ These two queries are availale just in **MySQL**! It's TOP in SQL server/Assess.
 		ORDER BY order_num DESC, item_price DESC;
 
 ### WHERE  
-* 7. Return product name and price which price is between 3 and 5.  
+* 7 Return product name and price which price is between 3 and 5.  
 (! BETWEEN 3 AND 5 = [3,5])  
 
 		SELECT prod_name, prod_price
 		FROM products
 		WHERE prod_price BETWEEN 3 AND 5.99;
 
-* 8. <> and !=  
+* 8 <> and !=  
 
 		SELECT prod_name, vend_id
 		FROM products
@@ -78,33 +78,33 @@ Here is one of the solutions!~ Using **BINARY** Thanks for the Internet and sear
 		FROM products
 		WHERE BINARY vend_id <> 'brs01'; 
 	
-* 9. IS NULL and IS NOT NULL  
+* 9 IS NULL and IS NOT NULL  
 
 		SELECT *
 		FROM vendors
 		WHERE vend_state IS NOT NULL;
 	
 #### About the date  
-* 10. Get the year/month/day from the date column: year(), month(), day()  
+* 10 Get the year/month/day from the date column: year(), month(), day()  
 
 		SELECT *
 		FROM orders
 		WHERE day(order_date) BETWEEN 1 AND 5; -- from Monday to Friday
 
-* 11. Return the orders which were created on workday  
+* 11 Return the orders which were created on workday  
 
 		SELECT *
 		FROM orders
 		WHERE dayname(order_date) BETWEEN 1 AND 5;
 
-* 12. Return the order that order date is 2012-05-01  
+* 12 Return the order that order date is 2012-05-01  
 (the date format does not have to be the same with table, but the order is the same)  
 
 		SELECT *
 		FROM orders
 		WHERE date(order_date) = '2012/5/1';
 	
-* 13. yearweek = year+week; weekofyear = week of year  
+* 13 yearweek = year+week; weekofyear = week of year  
 
 		SELECT *
 		FROM orders
@@ -115,7 +115,7 @@ Here is one of the solutions!~ Using **BINARY** Thanks for the Internet and sear
 		WHERE weekofyear(order_date) >4;
 
 #### AND, OR, IN, NOT   
-* 14. Priority of and & or: and > or  
+* 14 Priority of and & or: and > or  
 
 		SELECT *
 		FROM products
@@ -125,13 +125,13 @@ Here is one of the solutions!~ Using **BINARY** Thanks for the Internet and sear
 		FROM products
 		WHERE (vend_id = 'DLL01' OR vend_id = 'BRS01' )AND prod_price > 4;
 
-* 15. IN for string and BETWEEN for number  
+* 15 IN for string and BETWEEN for number  
 
 		SELECT *
 		FROM products
 		WHERE vend_id IN ('DLL01','BRS01') AND prod_price > 4;
 	
-* 16. NOT: just not the query followed the 'NOT'
+* 16 NOT: just not the query followed the 'NOT'
 
 		SELECT *
 		FROM products
@@ -144,7 +144,7 @@ Here is one of the solutions!~ Using **BINARY** Thanks for the Internet and sear
 Please find more detail [here](https://dev.mysql.com/doc/refman/5.6/en/regexp.html#operator_regexp) Documentation is useful!  
 **%**: any number of any character, it can also match space
 
-* 17. Find all bear toy
+* 17 Find all bear toy
 
 		SELECT prod_id, prod_name
 		FROM products
@@ -153,13 +153,13 @@ Please find more detail [here](https://dev.mysql.com/doc/refman/5.6/en/regexp.ht
 **\_**: only one character (use more \_ if you want to find a specified number of characters, e.g. \_\_\_ means 3 characters)  
 N.B. It's **?** in Access :)  
 
-* 18. Find all xxxx bean bag toy  
+* 18 Find all xxxx bean bag toy  
 
 		SELECT prod_id, prod_name
 		FROM products
 		WHERE prod_name LIKE '____ bean bag toy'  
 		
-* 19. Find all names containing exactly 8 characters  
+* 19 Find all names containing exactly 8 characters  
 
 		SELECT cust_contact
 		FROM customers
@@ -167,7 +167,7 @@ N.B. It's **?** in Access :)
 
 **REGEXP**: it's similar to regular expression in R :)  You can find a regular expression in my another repository~
 
-* 20. Find the toy that the name begins with B or F  
+* 20 Find the toy that the name begins with B or F  
 
 		SELECT prod_id, prod_name
 		FROM products
@@ -177,21 +177,21 @@ N.B. It's **?** in Access :)
 **concat**: concatenate columns and also strings(should be in '').   
 This is available in MySQL. As far as I know, in other DBMS it's + or ||. If we use these two syntax, MySQL doesn't give error but the result isn't right.
 
-* 21. Combine vendor name and country in a new column and country in parentheses, give a new alias.  	
+* 21 Combine vendor name and country in a new column and country in parentheses, give a new alias.  	
 		
 		SELECT concat(vend_name,'(',vend_country,')') vend_name_country -- Use '' when add string!
 		FROM vendors;
 
 **RTRIM/LTRIM/TRIM**: delete unnecessary space.  
 
-* 22. Delete unnecessary space in vend_state column.
+* 22 Delete unnecessary space in vend_state column.
 
 		SELECT TRIM(vend_state)
 		FROM vendors;
 
 ### Calculation
 
-* 23. Calculate each item amount in every order.  
+* 23 Calculate each item amount in every order.  
 
 		SELECT order_num,
 			order_item,
@@ -205,19 +205,19 @@ Once I tried "SELECT now()", after that all my queries can't run correctly, then
 
 **UPPER/LOWER**: change text into upper/lower case, it's similar in R.  
 
-* 24. Upper and lower product name in the product table.
+* 24 Upper and lower product name in the product table.
 
 		SELECT prod_name, UPPER(prod_name), LOWER(prod_name)
 		FROM products;
 
 **LENGTH**: get the string length.  
 
-* 25. Get the length of vendor state.  
+* 25 Get the length of vendor state.  
 
 		SELECT vend_state, LENGTH(vend_state) state_text_length
 		FROM vendors;
 
-* 25. I want to find a contact, but I can't remember his name clearly. Jim or Gin.  
+* 26 I want to find a contact, but I can't remember his name clearly. Jim or Gin.  
 But it really depends on the SOUND!!!
 
 		SELECT cust_contact
@@ -234,27 +234,27 @@ We can get pi by using SELECT
 **COUNT** 
 
 + COUNT: for the whole table, count() will return the total row numbers  
-* 26. How many toy vendors do we have?
+* 27 How many toy vendors do we have?
 
 		SELECT COUNT(*)
 		FROM vendors;
 
 + COUNT: for single column, NULL value are not included  
-* 27. How many vendors does provide their state?  
+* 28 How many vendors does provide their state?  
 
 		SELECT COUNT(vend_state)  
 		FROM vendors;  
 
 **AVG()**
 
-* 28. Calculate average order price.  
+* 29 Calculate average order price.  
 		
 		SELECT AVG(item_price)
 		FROM orderitems;
 
 But I think above eexample is meaningless, so here is another one.  
 
-* 29. Calculate every order's item average price  
+* 30 Calculate every order's item average price  
 
 		SELECT order_num,sum(quantity*item_price)/sum(quantity) avg_order_price
 		FROM orderitems
@@ -263,7 +263,7 @@ But I think above eexample is meaningless, so here is another one.
 
 **MAX()/MIN()**
 
-* 30. Find the maximum quantity and maximum item price. This query works well, BUT the result isn't from the same row!
+* 31 Find the maximum quantity and maximum item price. This query works well, BUT the result isn't from the same row!
 
 		SELECT MAX(quantity),MAX(item_price)
 		FROM orderitems;
@@ -273,7 +273,7 @@ MAX/MIN can also use for other datatype, not just int/num
 		SELECT MIN(cust_name) -- in alphaetical order
 		FROM customers;
 
-* 31. How many product every vendor can provide?
+* 32 How many product every vendor can provide?
 
 		SELECT v.vend_name, COUNT(p.prod_id)
 		FROM vendors v, products p
@@ -285,7 +285,7 @@ MAX/MIN can also use for other datatype, not just int/num
 		  ON v.vend_id = p.vend_id
 		GROUP BY p.vend_id;
 
-* 32. How many product every vendor can provide? Those vendors don't provide products should be included.  
+* 33 How many product every vendor can provide? Those vendors don't provide products should be included.  
 N.B.Pls keep an eye on the table where we get the column used in group by when outer join!!!!!!  
 
 The outcomes of below two queries are different.
@@ -304,7 +304,7 @@ The outcomes of below two queries are different.
 When we search > 1 time, we can use sub-query
 #### 1. as a filter
 
-* 33. Who ordered "BNBG01"? Return the customer id.  
+* 34 Who ordered "BNBG01"? Return the customer id.  
 
 The subquery might return more than 1 row, so use **IN** not = in WHERE!!!!!!
 
@@ -317,7 +317,7 @@ The subquery might return more than 1 row, so use **IN** not = in WHERE!!!!!!
 
 We can nest more than one sub-query, but this can affect the execution duration.
 
-* 34. Who ordered "BNBG01"? return the customer name?
+* 35 Who ordered "BNBG01"? return the customer name?
 
 **Solution 1**: sub-query
 Use a DISTINCT will be more rigorous
@@ -341,7 +341,7 @@ In this case, actually the sub-query returns the outcome from different tables, 
 		WHERE oi.prod_id = "BNBG01";
 
 #### 2. Calculation & Aggregation (when use > 1 tables)
-Sum of order of each customer?
+* 36 Sum of order of each customer?
 
 **Solution 1**: sub-query
 We don't use distinct in count this time, because order_num is the primary key in orders
