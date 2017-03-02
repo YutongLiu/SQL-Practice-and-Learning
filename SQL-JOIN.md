@@ -2,6 +2,16 @@
 I think join is one of the most powderful function in SQL. So here I synthesized these different **JOIN**.  
 Paying attention to the details in every query is important!!!  
 
+### INNER JOIN
+Find the parts that exist in different table.
+* Sum of order of each customer, and the customer state?
+If we don't need to return, we can search only in table orders,and join is not necessary in that case
+
+		SELECT c.cust_id, c.cust_state, COUNT(o.order_num) sum_order
+		FROM customers c INNER JOIN orders o
+			ON c.cust_id = o.cust_id
+		GROUP BY c.cust_id;
+
 ### SELF-JOIN
 I think **SELF-JOIN** is "copy a table to join", not join another one, when there are **more than one queries in one table.**
 To copy a table, we can use alias.
