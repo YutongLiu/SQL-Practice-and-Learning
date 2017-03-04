@@ -116,3 +116,29 @@ Rank without duplicate
 	        on a.quantity > b.quantity
         GROUP BY a.order_item,a.prod_id,a.quantity
         HAVING rank = 3;
+
+### OUTER JOIN
+I drew a simple diagram which shows how INNER JOIN, LEFT OUTER JOIN and RIGHT OUTER JOIN work.
+
+![diagram](https://github.com/YutongLiu/SQL-Practice-and-Learning/blob/master/Images/THREE%20TYPES%20OF%20JOIN.JPG)
+
+#### JOIN TWO TABLE
+* List all customer id, name, state and their order number.  
+
+		SELECT c.cust_id, c.cust_name, c.cust_state, 
+			COUNT(o.order_num)
+		FROM customers c LEFT JOIN orders o
+			ON c.cust_id = o.cust_id
+		GROUP BY c.cust_id;   
+		
+#### JOIN MORE THAN TWO TABLES
+* List all customer id, name, state and their order number and amount.
+Actually it takes a few minutes to answer this question I raised by myself... Anyway I solved this question. Here are two key points:  
+  1.  **DISTINCT** is necessary in this case, otherwise it returns customer's order# * order_item.
+  2.  () is necessary and it must be parenthesize INNER JOIN.
+		
+		SELECT c.cust_id, c.cust_name, c.cust_state, 
+			COUNT(DISTINCT o.order_num),SUM(oi.quantity*oi.item_price)
+		FROM customers c LEFT JOIN (orders o INNER JOIN orderitems oi)
+			ON o.order_num = oi.order_num and c.cust_id = o.cust_id
+		GROUP BY c.cust_id;        
