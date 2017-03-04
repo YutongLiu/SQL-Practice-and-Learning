@@ -134,7 +134,7 @@ I drew a simple diagram which shows how INNER JOIN, LEFT OUTER JOIN and RIGHT OU
 #### JOIN MORE THAN TWO TABLES
 * List all customer id, name, state and their order number and amount.
 Actually it takes a few minutes to answer this question I raised by myself... Anyway I solved this question. Here are two key points:  
-  1.**DISTINCT** is necessary in this case, otherwise it returns customer's order# * order_item.
+  1.**DISTINCT** is necessary in this case, otherwise it returns customer's order# * order_item.  
   2.() is necessary and it must be parenthesize INNER JOIN.  
 
 		SELECT c.cust_id, c.cust_name, c.cust_state,
